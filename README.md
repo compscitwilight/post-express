@@ -22,5 +22,7 @@ NOTE: Please make sure that you have Node.js and Git installed.
 `npm install`
 
 Whenever you're done making changes, run the following command.
-``
+`git add --all`
+`git commit -m "State the changes that you made here."`
+`git push`
 After that, open up a pull request on this repository summarizing your changes!
