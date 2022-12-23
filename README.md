@@ -18,7 +18,7 @@ If you'd like to contribute to post-express on your local machine, then run the 
 
 NOTE: Please make sure that you have Node.js and Git installed.
 
-`git clone (url-goes-here) post-express`
+`git clone https://github.com/devrusty/post-express post-express`
 `cd post-express`
 `npm install`
 
