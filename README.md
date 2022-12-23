@@ -18,12 +18,12 @@ If you'd like to contribute to post-express on your local machine, then run the 
 
 NOTE: Please make sure that you have Node.js and Git installed.
 
-`git clone https://github.com/devrusty/post-express post-express`
-`cd post-express`
-`npm install`
+* `git clone https://github.com/devrusty/post-express post-express`
+* `cd post-express`
+* `npm install`
 
 Whenever you're done making changes, run the following command.
-`git add --all`
-`git commit -m "State the changes that you made here."`
-`git push`
+* `git add --all`
+* `git commit -m "State the changes that you made here."`
+* `git push`
 After that, open up a pull request on this repository summarizing your changes!
