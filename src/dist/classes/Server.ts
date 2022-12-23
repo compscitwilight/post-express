@@ -22,9 +22,7 @@ class PostExpressServer {
     public constructor(
         public readonly port: number
     ) {
-        //let Router = Express();
-        //this.expressRouter = Router;
-        //this.routes = [];
+        this.expressRouter.use(Express.urlencoded({ extended: false }));
     }
 
     /**
@@ -184,6 +182,14 @@ class PostExpressServer {
      */
     public execute(cb: (server: PostExpressServer) => any) {
         cb(this);
+    }
+
+    /**
+     * Wrapper for Express.use()
+     * @param handlers The handlers for the server to use.
+     */
+    public use(handlers: RequestHandler[]) {
+        this.expressRouter.use(handlers);
     }
 }
 
