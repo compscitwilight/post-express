@@ -1,2 +1,2 @@
 import { Request } from "express";
-export default new Map<Request, any>;
+export default new Map<Request, any>();
