@@ -7,6 +7,7 @@ import RouteGroup from "./RouteGroup";
 import ServerDBData from "../interfaces/ServerDBData";
 import * as socketio from "socket.io";
 import { Server } from "http";
+import Sessions from "../../data/Sessions";
 
 /**
  * A post-express server.
@@ -197,7 +198,8 @@ class PostExpressServer {
      * @param req The request object
      */
     public getSessionFromRequest(req: Request) {
-
+        let session = Sessions.get(req);
+        return session;
     }
 }
 
