@@ -13,7 +13,7 @@ import { Server } from "http";
  */
 class PostExpressServer {
     private expressRouter: Express.Express = Express();
-    private httpServer: Server = new Server();
+    private httpServer: Server = new Server(this.expressRouter);
     private socketsEnabled: boolean = false;
     private socketServer?: socketio.Server;
     public routes: PostExpressRoute[] = [];
@@ -48,6 +48,19 @@ class PostExpressServer {
             
             Routes.push(Route);
             this.routes.push(Route);
+
+            let miscOptions = route.misc;
+            if (miscOptions) {
+                let redirect = miscOptions.redirect;
+                // if there is no redirect, and it somehow gets to the routing part,
+                // then the client will be redirected to "/"
+                if (redirect) {
+                    routeFromHTTPMethod(Method, ExpressRouter, Path, (req: Request, res: Response) => {
+                        res.redirect(redirect || "/");
+                    })
+                    return
+                }
+            }
         
             routeFromHTTPMethod(Method, ExpressRouter, Path, Handler);
         }
@@ -139,7 +152,7 @@ class PostExpressServer {
      * Creates a socket server. Only for use in exceptions, such as when a socket.io server is not existent.
      */
     private createSocketServer() {
-        let socketServer = this.createSocketServer();
+        let socketServer = new socketio.Server(this.httpServer);
         StateConsole(StateConsoleState.CREATE, "Created socket.io server.");
         return socketServer;
     }
