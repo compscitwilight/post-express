@@ -191,6 +191,14 @@ class PostExpressServer {
     public use(handlers: RequestHandler[]) {
         this.expressRouter.use(handlers);
     }
+    
+    /**
+     * Returns the active in-memory session of the request provided (req)
+     * @param req The request object
+     */
+    public getSessionFromRequest(req: Request) {
+
+    }
 }
 
 export default PostExpressServer;
