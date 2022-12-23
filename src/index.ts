@@ -5,6 +5,7 @@ import { StateConsole, StateConsoleState } from "./dist/utils/StateConsole";
 import PostExpressRoute from "./dist/classes/Route";
 import {Request, Response} from "express";
 import { generateRoute, generateRoutes, RouteGenerationParams } from "./dist/utils/generateRoute";
+import ExternalRequest from "./dist/classes/ExternalRequest";
 
 export {
     PostExpressServer,
@@ -17,5 +18,6 @@ export {
     PostExpressRoute,
     generateRoute,
     generateRoutes,
-    RouteGenerationParams
+    RouteGenerationParams,
+    ExternalRequest
 }
