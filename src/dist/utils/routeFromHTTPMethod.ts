@@ -23,5 +23,6 @@ export function routeFromHTTPMethod(method: HTTPMethod, server: Express, route: 
             server.put(route, handler);
             break;
     }
+    
     StateConsole(StateConsoleState.CREATE, `Created ${String(method)} route ${route}`);
 }

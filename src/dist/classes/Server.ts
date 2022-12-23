@@ -16,6 +16,7 @@ class PostExpressServer {
     private httpServer: Server = new Server(this.expressRouter);
     private socketsEnabled: boolean = false;
     private socketServer?: socketio.Server;
+    private globalHandler: RequestHandler = (req: Request, res: Response) => {};
     public routes: PostExpressRoute[] = [];
     public db?: ServerDBData;
     public constructor(
@@ -174,7 +175,15 @@ class PostExpressServer {
      * Sets the function that will be called from any route.
      */
     public setGlobalHandler(handler: RequestHandler) {
-        
+        this.globalHandler = handler;   
+    }
+
+    /**
+     * Lets you add another function to handle the server. This would be useful
+     * for handling the server in seperate files.
+     */
+    public execute(cb: (server: PostExpressServer) => any) {
+        cb(this);
     }
 }
 
