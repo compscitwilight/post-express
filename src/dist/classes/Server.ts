@@ -12,17 +12,18 @@ import { Server } from "http";
  * A post-express server.
  */
 class PostExpressServer {
-    private expressRouter: Express.Express;
+    private expressRouter: Express.Express = Express();
+    private httpServer: Server = new Server();
     private socketsEnabled: boolean = false;
     private socketServer?: socketio.Server;
-    public routes: PostExpressRoute[];
+    public routes: PostExpressRoute[] = [];
     public db?: ServerDBData;
     public constructor(
         public readonly port: number
     ) {
-        let Router = Express();
-        this.expressRouter = Router;
-        this.routes = [];
+        //let Router = Express();
+        //this.expressRouter = Router;
+        //this.routes = [];
     }
 
     /**
@@ -135,13 +136,24 @@ class PostExpressServer {
     }
 
     /**
+     * Creates a socket server. Only for use in exceptions, such as when a socket.io server is not existent.
+     */
+    private createSocketServer() {
+        let socketServer = this.createSocketServer();
+        StateConsole(StateConsoleState.CREATE, "Created socket.io server.");
+        return socketServer;
+    }
+
+    /**
      * Returns the active socket.io server if sockets are enabled.
      */
     public getSocketServer() {
         if (!this.socketsEnabled)
             return console.warn("Sockets are not enabled. Use enableSockets() to enable.");
         if (!this.socketServer)
-            return console.warn("A socket.io server does not exist for this server.");
+            console.warn("A socket.io server does not exist for this server. Resolving...");
+            this.createSocketServer();
+
         return this.socketServer;
     }
 
