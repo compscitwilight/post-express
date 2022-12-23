@@ -8,6 +8,7 @@ Server._Listen(() => {
     console.log("Server is now online");
 });
 ```
+<a href="/examples">see more examples here</a>
 
 ## Contributing
 Anyone is allowed to contribute to post-express. Just open a pull request if you would like to merge your own code into this repository, or open an issue if you would like changes to be made to the project.
