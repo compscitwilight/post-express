@@ -201,6 +201,12 @@ class PostExpressServer {
         let session = Sessions.get(req);
         return session;
     }
+
+    public setSession(req: Request, sessionData: any) {
+        Sessions.set(req, sessionData);
+        let session = Sessions.get(req);
+        return session;
+    }
 }
 
 export default PostExpressServer;
