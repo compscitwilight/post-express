@@ -9,6 +9,7 @@ Server._Listen(() => {
 });
 ```
 <a href="/docs/examples">see more examples here</a>
+<a href="/docs">read the docs here</a>
 
 ## Contributing
 Anyone is allowed to contribute to post-express. Just open a pull request if you would like to merge your own code into this repository, or open an issue if you would like changes to be made to the project.
