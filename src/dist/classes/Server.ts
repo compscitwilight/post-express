@@ -141,10 +141,7 @@ class PostExpressServer {
         if (this.socketsEnabled)
             return console.warn("Sockets are already enabled.");
         
-        let httpServer = new Server(this.expressRouter);
-        let socketServer = new socketio.Server(httpServer);
-        this.socketsEnabled = true;
-        this.socketServer = socketServer;
+        this.createSocketServer();
         StateConsole(StateConsoleState.CHANGE, "Enabled sockets on server.");
     }
 
