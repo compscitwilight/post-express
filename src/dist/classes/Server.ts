@@ -151,6 +151,7 @@ class PostExpressServer {
      */
     private createSocketServer() {
         let socketServer = new socketio.Server(this.httpServer);
+        this.socketServer = socketServer;
         StateConsole(StateConsoleState.CREATE, "Created socket.io server.");
         return socketServer;
     }
