@@ -141,6 +141,7 @@ class PostExpressServer {
         if (this.socketsEnabled)
             return console.warn("Sockets are already enabled.");
         
+        this.socketsEnabled = true;
         this.createSocketServer();
         StateConsole(StateConsoleState.CHANGE, "Enabled sockets on server.");
     }
