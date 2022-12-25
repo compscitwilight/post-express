@@ -1,4 +1,4 @@
-import Express, { Request, RequestHandler, Response } from "express"
+import Express, { NextFunction, Request, RequestHandler, Response } from "express"
 import RouteParams from "../interfaces/RouteParams";
 import { StateConsole, StateConsoleState } from "../utils/StateConsole";
 import PostExpressRoute from "./Route";
@@ -58,7 +58,7 @@ class PostExpressServer {
                     routeFromHTTPMethod(Method, ExpressRouter, Path, (req: Request, res: Response) => {
                         res.redirect(redirect || "/");
                     })
-                    return
+                    return route;
                 }
             }
         
@@ -101,27 +101,30 @@ class PostExpressServer {
      */
     public groupRoutes(routes: PostExpressRoute[], path: string, sharedHandler?: RequestHandler) {
         let Server = this.expressRouter;
-
-        routes.forEach((route: PostExpressRoute) => {
+        let resolving = (routes as PostExpressRoute[]);
+        console.log(routes.constructor);
+        resolving.forEach((route: PostExpressRoute) => {
             if (route.params.path.startsWith("/"))
                 route.params.path.replace("/", "");
 
             let existingRoute = this.routes.find((exRoute: PostExpressRoute) => {
                 return exRoute.params.path == route.params.path;
             })
-            
-            this.Route(new Array<RouteParams>(route.params), (req: Request, res: Response) => {
 
-            })
-            /*
-            Server.all(route.params.path, (req: Request, res: Response) => {
-                res.status(404);
-            });
-            */
             let handler: RequestHandler = route.params.handler;
-            if (sharedHandler)
-                handler = sharedHandler;
-            
+            if (sharedHandler) {
+                this.Route([
+                    {
+                        method: route.params.method,
+                        path: route.params.path,
+                        handler: (req: Request, res: Response, next: NextFunction) => {
+                            handler(req, res, next);
+                            sharedHandler(req, res, next);
+                        }
+                    }
+                ])
+            }
+
             route.params.path = `${path}${route.params.path}`;
             this.Route(new Array<RouteParams>(route.params));
             if (existingRoute) {
