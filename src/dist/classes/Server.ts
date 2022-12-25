@@ -58,7 +58,7 @@ class PostExpressServer {
                     routeFromHTTPMethod(Method, ExpressRouter, Path, (req: Request, res: Response) => {
                         res.redirect(redirect || "/");
                     })
-                    return route;
+                    return Routes;
                 }
             }
         
