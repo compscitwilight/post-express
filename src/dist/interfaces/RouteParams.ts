@@ -5,7 +5,7 @@ import PostExpressServer from "../classes/Server";
 interface RouteParams {
     path: string,
     method: HTTPMethod | HTTPMethod.GET,
-    handler: RequestHandler,
+    handler: RequestHandler<any>,
     // RouteParams.misc
     // NOTE: Everything in this property must be optional (ending with ?)
     // otherwise, the changes may be breaking
