@@ -113,8 +113,10 @@ handler: RequestHandler
 
 #### Parameters
 ```typescript
-cb: (server: PostExpressServer) => any;
+func: (server: PostExpressServer, customParameters?: any[]) => any,
 // The function that will be invoked by the server.
+customParameters: any[]
+// Custom parameters that will be passed to func along with the server.
 ```
 
 ### `use() : void`

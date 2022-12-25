@@ -183,8 +183,8 @@ class PostExpressServer {
      * Lets you add another function to handle the server. This would be useful
      * for handling the server in seperate files.
      */
-    public execute(cb: (server: PostExpressServer) => any) {
-        cb(this);
+    public execute(func: (server: PostExpressServer, customParameters?: any) => any, customParameters?: any[]) {
+        func(this, customParameters);
     }
 
     /**
