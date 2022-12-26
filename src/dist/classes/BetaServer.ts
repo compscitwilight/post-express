@@ -13,8 +13,8 @@ class PostExpressBetaServer {
         private readonly Server: PostExpressServer
     ) {}
 
-    public Render(res: Response, htmlRaw: string, renderParams?: RenderParameters[]) {
-        render(res, htmlRaw, renderParams);
+    public Render(res: Response, htmlRaw: string, renderParams?: RenderParameters[], stylesheets?: string[]) {
+        render(res, htmlRaw, renderParams, stylesheets);
     }
 }
 
