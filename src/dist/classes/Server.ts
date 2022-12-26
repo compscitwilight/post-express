@@ -8,6 +8,7 @@ import ServerDBData from "../interfaces/ServerDBData";
 import * as socketio from "socket.io";
 import { Server } from "http";
 import Sessions from "../../data/Sessions";
+import PostExpressBetaServer from "./BetaServer";
 
 /**
  * A post-express server.
@@ -211,6 +212,10 @@ class PostExpressServer {
         Sessions.set(req, sessionData);
         let session = Sessions.get(req);
         return session;
+    }
+
+    public enableBeta() {
+        return new PostExpressBetaServer(this);
     }
 }
 

@@ -147,3 +147,6 @@ req: Request,
 sessionData: any
 // The session data that will be assigned to the session.
 ```
+
+### `enableBeta() : PostExpressBetaServer`
+`enableBeta()` is a function that returns a `PostExpressBetaServer` that allows the developer to use beta features that are in-development.
