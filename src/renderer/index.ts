@@ -51,8 +51,15 @@ export function render(res: Response, raw: string | Buffer, params?: RenderParam
 
     function setElementValue(element: string, newVal: string) {
         let val = element.split(">")[1].split("<")[0];
-        console.log(val);
-        //val = newVal;
+        val = newVal;
+
+        // rebuilding the element
+        let openingPart = element.split(">")[0] + ">";
+        let closingPart = "<" + element.split("<")[2];
+        let newElement = `${openingPart}${val}${closingPart}`;
+        let lines = breakdownLines(stringRaw);
+        lines[lines.indexOf(element)] = newElement;
+        stringRaw = String(lines);
     }
 
     // doing all of the parameter functionality if
@@ -66,9 +73,7 @@ export function render(res: Response, raw: string | Buffer, params?: RenderParam
                 return
             }
 
-            let indexInRaw = stringRaw.indexOf(element);
-            let lineInRaw = stringRaw.at(indexInRaw);
-            
+            setElementValue(element, param.value);
         }
     }
 
@@ -84,13 +89,8 @@ export function render(res: Response, raw: string | Buffer, params?: RenderParam
         }
     }
 
-    // finale
-    if (typeof raw == "string") {
-        res.send(raw);
-        return;
-    }
-
-    res.send(convertBuffer(raw));
+    //console.log(stringRaw);
+    res.send(stringRaw);
 }
 
 /**
