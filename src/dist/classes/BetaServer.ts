@@ -10,7 +10,7 @@ import RenderParameters from "../interfaces/RenderParameters";
 
 class PostExpressBetaServer {
     constructor(
-        public readonly Server: PostExpressServer
+        private readonly Server: PostExpressServer
     ) {}
 
     public Render(res: Response, htmlRaw: string, renderParams?: RenderParameters[]) {
