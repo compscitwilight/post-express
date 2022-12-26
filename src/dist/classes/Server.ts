@@ -62,7 +62,10 @@ class PostExpressServer {
                 }
             }
         
-            routeFromHTTPMethod(Method, ExpressRouter, Path, Handler);
+            routeFromHTTPMethod(Method, ExpressRouter, Path, (req: Request, res: Response, next: NextFunction) => {
+                this.globalHandler(req, res, next);
+                Handler(req, res, next);
+            });
         }
 
         if (Routes.length === 1)
