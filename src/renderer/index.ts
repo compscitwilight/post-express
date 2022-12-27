@@ -48,7 +48,7 @@ export function render(res: Response, raw: string | Buffer, params?: RenderParam
         }
         return element;
     }
-
+    console.log(stringRaw);
     function setElementValue(element: string, newVal: string) {
         let val = element.split(">")[1].split("<")[0];
         val = newVal;
@@ -57,25 +57,27 @@ export function render(res: Response, raw: string | Buffer, params?: RenderParam
         let openingPart = element.split(">")[0] + ">";
         let closingPart = "<" + element.split("<")[2];
         let newElement = `${openingPart}${val}${closingPart}`;
+
+        // rebuilding stringRaw
         let lines = breakdownLines(stringRaw);
         lines[lines.indexOf(element)] = newElement;
         stringRaw = String(lines);
+        console.log(lines);
     }
 
     // doing all of the parameter functionality if
     // some params were passed
-    if (params) {
-        for (var i = 0; i < params.length; i++) {
-            let param = params[i];
-            let element = getElementById(param.elementId);
-            if (!element) {
-                console.warn(`Cannot complete post-express rendering because an element with the ID of "${param.elementId}" does not exist.`);
-                return
-            }
+    params?.forEach((param) => {
+        if (!param) return;
 
-            setElementValue(element, param.value);
+        let element = getElementById(param.elementId);
+        if (!element) {
+            console.warn(`Cannot complete post-express rendering because an element with the ID of "${param.elementId}" does not exist.`);
+            return
         }
-    }
+        console.log(param.value);
+        setElementValue(element, param.value);
+    })
 
     // adding stylesheets
     for (var i = 0; i < Stylesheets.length; i++) {
