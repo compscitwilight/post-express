@@ -103,6 +103,13 @@ export function render(server: PostExpressServer, res: Response, raw: string | B
         }
     }
 
+    // socket.io client script
+    if (server.getSocketServer()) {
+        let scriptSrc = "https://cdn.socket.io/4.5.4/socket.io.min.js";
+        let socketIoScript = `<script src="${scriptSrc}" defer></script>`;
+        stringRaw += socketIoScript;
+    }
+
     //console.log(stringRaw);
     res.send(stringRaw);
 }
