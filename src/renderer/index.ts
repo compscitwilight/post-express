@@ -48,7 +48,7 @@ export function render(server: PostExpressServer, res: Response, raw: string | B
         }
         return element;
     }
-    console.log(stringRaw);
+
     function setElementValue(element: string, newVal: string) {
         let val = element.split(">")[1].split("<")[0];
         val = newVal;
@@ -74,7 +74,6 @@ export function render(server: PostExpressServer, res: Response, raw: string | B
         });
 
         stringRaw = String(lines);
-        console.log(stringRaw)
     }
 
     // doing all of the parameter functionality if
@@ -104,13 +103,12 @@ export function render(server: PostExpressServer, res: Response, raw: string | B
     }
 
     // socket.io client script
-    if (server.getSocketServer()) {
+    if (server.socketsEnabled) {
         let scriptSrc = "https://cdn.socket.io/4.5.4/socket.io.min.js";
         let socketIoScript = `<script src="${scriptSrc}" defer></script>`;
         stringRaw += socketIoScript;
     }
 
-    //console.log(stringRaw);
     res.send(stringRaw);
 }
 
