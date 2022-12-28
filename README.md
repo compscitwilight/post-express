@@ -12,6 +12,17 @@ Server._Listen(() => {
 <br>
 <a href="/docs">read the docs here</a>
 
+## Installation
+If you're interested in trying out post-express, then run the following commands in an NPM project.
+
+If you do not have an NPM project initialized, please run the following command.
+`npm init`
+
+If you do not have NPM installed, install <a href="https://nodejs.org/en/">Node.js</a>.
+
+To install post-express, run
+`npm install https://github.com/devrusty/post-express`
+
 ## Contributing
 Anyone is allowed to contribute to post-express. Just open a pull request if you would like to merge your own code into this repository, or open an issue if you would like changes to be made to the project.
 
