@@ -16,7 +16,7 @@ import PostExpressBetaServer from "./BetaServer";
 class PostExpressServer {
     private expressRouter: Express.Express = Express();
     private httpServer: Server = new Server(this.expressRouter);
-    private socketsEnabled: boolean = false;
+    public socketsEnabled: boolean = false;
     private socketServer?: socketio.Server;
     private globalHandler: RequestHandler = (req: Request, res: Response) => {};
     public routes: PostExpressRoute[] = [];
