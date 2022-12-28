@@ -20,7 +20,7 @@ private httpServer: Server;
 // This property contains the http.Server component of the post-express server, which is responsible for configuring things such as web sockets in Socket.io.
 ```
 ```typescript
-private socketsEnabled: boolean; 
+public socketsEnabled: boolean; 
 // Boolean value for whether or not Socket.io sockets are enabled or not.
 ```
 ```typescript
