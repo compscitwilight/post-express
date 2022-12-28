@@ -61,8 +61,20 @@ export function render(res: Response, raw: string | Buffer, params?: RenderParam
         // rebuilding stringRaw
         let lines = breakdownLines(stringRaw);
         lines[lines.indexOf(element)] = newElement;
+
+        let characters = stringRaw.split("");
+        let rebuild = characters.map((char: string) => {
+            let nextCharacter = characters[characters.indexOf(char) + 1]
+            if (char == ">" && nextCharacter !== "<") {
+                console.log("yes");
+                console.log(char);
+                console.log(nextCharacter);
+            }
+            return char;
+        });
+
         stringRaw = String(lines);
-        console.log(lines);
+        console.log(stringRaw)
     }
 
     // doing all of the parameter functionality if
