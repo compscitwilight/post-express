@@ -22,7 +22,7 @@ class PostExpressBetaServer {
      * @param stylesheets External stylesheets that will be loaded into the page that is rendered
      */
     public Render(res: Response, htmlRaw: string, renderParams?: RenderParameters[], stylesheets?: string[]) {
-        render(res, htmlRaw, renderParams, stylesheets);
+        render(this.Server, res, htmlRaw, renderParams, stylesheets);
     }
 
     /**

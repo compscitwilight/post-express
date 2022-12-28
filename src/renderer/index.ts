@@ -2,7 +2,7 @@
  * Entry point for the post-express renderer.
  */
 
-import { Response } from "../";
+import { Response, PostExpressServer } from "../";
 import RenderParameters from "../dist/interfaces/RenderParameters";
 
 let Stylesheets = new Array<String>();
@@ -29,7 +29,7 @@ export function breakdownLines(txt: string) {
  * @param params Optional parameters that lets you pass data to the front-end.
  * @returns 
  */
-export function render(res: Response, raw: string | Buffer, params?: RenderParameters[], specificStylesheets?: string[]) {
+export function render(server: PostExpressServer, res: Response, raw: string | Buffer, params?: RenderParameters[], specificStylesheets?: string[]) {
     let stringRaw: string;
     if (typeof raw !== "string")
         stringRaw = convertBuffer(raw);
